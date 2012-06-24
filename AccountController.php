@@ -107,7 +107,7 @@ class AccountController extends PluginController {
             exit();
         }*/
 
-        if ($user->password != sha1($data['old'].$user->salt)) {
+        if ($user->password != AuthUser::generateHashedPassword($data['old'].$user->salt)) {
             $this->display(ACCOUNT_VIEWS.'/error', array('errors' => array('The old password you entered was incorrect.')));
         }
 
@@ -115,7 +115,7 @@ class AccountController extends PluginController {
             $this->display(ACCOUNT_VIEWS.'/error', array('errors' => array('Password and Confirm are not the same or too small!')));
         }
 
-        $user->password = sha1($data['password'].$user->salt);
+        $user->password = AuthUser::generateHashedPassword($data['password'].$user->salt);
         if (!$user->save()) {
             $this->display(ACCOUNT_VIEWS.'/error', array('errors' => array('Unable to update password!')));
         }
