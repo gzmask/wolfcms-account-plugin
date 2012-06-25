@@ -187,7 +187,7 @@ class AccountController extends PluginController {
     public function settings() {
         $this->_checkLoggedIn();
 
-        if (!AuthUser::hasPermission('administrator')) {
+        if (!AuthUser::hasPermission('admin_edit')) {
             $this->display(ACCOUNT_VIEWS.'/403');
         }
 
