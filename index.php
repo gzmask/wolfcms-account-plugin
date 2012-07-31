@@ -36,7 +36,8 @@ Plugin::setInfos(array(
 ));
 
 // Setup the controller.
-Plugin::addController('account', 'Account', 'administrator', false);
+//Plugin::addController('account', 'Account', 'administrator', false);
+Plugin::addController('account', __('Account'));
 
 // Get settings
 $settings = Plugin::getAllSettings('account');
